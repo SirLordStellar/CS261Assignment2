@@ -3,11 +3,12 @@
  * the assignment.  Make sure to add your name and @oregonstate.edu email
  * address below:
  *
- * Name:
- * Email:
+ * Name: Sophia Pole
+ * Email: poles@oregonstate.edu
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "products.h"
 #include "dynarray.h"
