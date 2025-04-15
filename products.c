@@ -51,7 +51,8 @@ struct product* create_product(char* name, int inventory, float price) {
  *     as well as memory allocated for the struct itself.
  */
 void free_product(struct product* product) {
-
+  free(product -> name);
+  free(product);
 }
 
 
@@ -86,6 +87,7 @@ void free_product(struct product* product) {
  *   arguments.
  */
 struct dynarray* create_product_array(int num_products, char** names, int* inventory, float* prices) {
+  
   return NULL;
 }
 
