@@ -29,7 +29,14 @@
  *   initialized with the values provided.
  */
 struct product* create_product(char* name, int inventory, float price) {
-  return NULL;
+  struct product* productreturn = malloc(sizeof(struct product));
+  productreturn -> name = malloc(sizeof(*name));
+  for (int i = 0; i < sizeof(name)/sizeof(char); i++) {
+    productreturn -> name[i] = name[i];
+  }
+  productreturn -> inventory = inventory;
+  productreturn -> price = price;
+  return productreturn;
 }
 
 
