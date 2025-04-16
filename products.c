@@ -9,6 +9,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "products.h"
 #include "dynarray.h"
@@ -30,8 +31,8 @@
  */
 struct product* create_product(char* name, int inventory, float price) {
   struct product* productreturn = malloc(sizeof(struct product));
-  productreturn -> name = malloc(sizeof(*name));
-  for (int i = 0; i < sizeof(name)/sizeof(char); i++) {
+  productreturn -> name = malloc((strlen(name)+1));
+  for (int i = 0; i < (strlen(name) + 1); i++) {
     productreturn -> name[i] = name[i];
   }
   productreturn -> inventory = inventory;
@@ -87,8 +88,11 @@ void free_product(struct product* product) {
  *   arguments.
  */
 struct dynarray* create_product_array(int num_products, char** names, int* inventory, float* prices) {
-  
-  return NULL;
+  struct dynarray* buynleave = dynarray_create();
+  for (int i = 0; i < num_products; i++) {
+    dynarray_insert(buynleave, i, create_product(names[i], inventory[i], prices[i]));
+  }
+  return buynleave;
 }
 
 
@@ -107,7 +111,10 @@ struct dynarray* create_product_array(int num_products, char** names, int* inven
  *     is to be freed
  */
 void free_product_array(struct dynarray* products) {
-
+  for (int i = 0; i < dynarray_length(products); i++) {
+    free_product(dynarray_get(products, i));
+  }
+  dynarray_free(products);
 }
 
 
@@ -120,7 +127,7 @@ void free_product_array(struct dynarray* products) {
  *   products - the dynamic array of products to be printed
  */
 void print_products(struct dynarray* products) {
-
+  
 }
 
 
