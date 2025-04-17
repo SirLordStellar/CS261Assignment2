@@ -152,7 +152,14 @@ void print_products(struct dynarray* products) {
  *   the array.
  */
 struct product* find_max_price(struct dynarray* products) {
-  return NULL;
+  struct product* ethanwintershuuuuuh = (struct product*)dynarray_get(products, 0);
+  for (int i = 0; i < dynarray_length(products); i++) {
+    struct product* whichonearewelookingatnow = (struct product*)dynarray_get(products, i);
+    if (ethanwintershuuuuuh -> price < whichonearewelookingatnow -> price) {
+      ethanwintershuuuuuh = whichonearewelookingatnow;
+    }
+  }
+  return ethanwintershuuuuuh;
 }
 
 
@@ -178,7 +185,14 @@ struct product* find_max_price(struct dynarray* products) {
  *   the array.
  */
 struct product* find_max_investment(struct dynarray* products) {
-  return NULL;
+  struct product* ethanwintershuuuuuh = (struct product*)dynarray_get(products, 0);
+  for (int i = 0; i < dynarray_length(products); i++) {
+    struct product* whichonearewelookingatnow = (struct product*)dynarray_get(products, i);
+    if ((ethanwintershuuuuuh -> price * ethanwintershuuuuuh -> inventory) < (whichonearewelookingatnow -> price * whichonearewelookingatnow -> inventory)) {
+      ethanwintershuuuuuh = whichonearewelookingatnow;
+    }
+  }
+  return ethanwintershuuuuuh;
 }
 
 
@@ -202,5 +216,18 @@ struct product* find_max_investment(struct dynarray* products) {
  *   highest).
  */
 void sort_by_inventory(struct dynarray* products) {
-
+  struct product* grace = (struct product*)dynarray_get(products, 0);
+  int swapindex = 0;
+  for (int i = 0; i < dynarray_length(products) - 1; i++) {
+    struct product* grace = (struct product*)dynarray_get(products, i);
+    for (int j = i; j < dynarray_length(products) - 1; j++) {
+      struct product* josh = (struct product*)dynarray_get(products, j);
+      if (grace -> inventory > josh -> inventory) {
+        grace = josh;
+        swapindex = j;
+      }
+    }
+    dynarray_set(products, swapindex, dynarray_get(products, i));
+    dynarray_set(products, i, grace); 
+  }
 }
