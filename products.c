@@ -127,7 +127,10 @@ void free_product_array(struct dynarray* products) {
  *   products - the dynamic array of products to be printed
  */
 void print_products(struct dynarray* products) {
-  
+  for (int i = 0; i < dynarray_length(products); i++) {
+    struct product* pointy = (struct product*)dynarray_get(products, i);
+    printf("Name: %s    Inventory: %u    Price: %f    \n", pointy -> name, pointy -> inventory, pointy -> price);
+  }
 }
 
 
